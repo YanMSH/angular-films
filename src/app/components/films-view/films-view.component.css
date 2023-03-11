@@ -2,13 +2,29 @@
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
-  justify-content: center;
-  margin: 0 auto;
+  margin: 0 25px;
 }
 
-.films__container-favorite {
-  margin-left: 25px;
-}
 .page__title {
   margin: 36px 25px 15px;
 }
+
+.input-group,
+.films__container-favorite {
+  margin-left: 25px;
+}
+
+.input-group {
+  display: flex;
+  gap: 7px;
+}
+
+.films__select,
+.films__search {
+  font-size: 14px;
+}
+
+
+
+
+

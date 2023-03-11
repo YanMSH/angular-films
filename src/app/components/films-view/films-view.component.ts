@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {FilmsService} from "../../services/films/films.service";
-import {Film} from "../../models/Film";
+import {Film, Genres} from "../../models/Film";
 import {FavoriteFilmService} from "../../services/favorite-film/favorite-film.service";
 
 @Component({
@@ -10,7 +10,9 @@ import {FavoriteFilmService} from "../../services/favorite-film/favorite-film.se
 })
 export class FilmsViewComponent implements OnInit {
   films: Film[];
+  filteredFilms: Film[];
   favoriteFilm: Film | null;
+  genres = Genres;
   constructor(
     private filmsService: FilmsService,
     private favService: FavoriteFilmService
@@ -19,7 +21,10 @@ export class FilmsViewComponent implements OnInit {
   }
   ngOnInit() {
     this.filmsService.getFilms().subscribe(
-      (films) => this.films = films
+      (films) => {
+        this.films = films;
+        this.filteredFilms = this.films;
+      }
     )
     this.favService.favoriteFilm$.subscribe(
       favorite => {
@@ -38,6 +43,24 @@ export class FilmsViewComponent implements OnInit {
     }
     else {
       return false
+    }
+  }
+
+  applyFilter(filterTermSelect?: string | null, filterTermSearch?: string | null){
+    if(filterTermSelect && filterTermSearch){
+      this.filteredFilms = this.films
+        .filter(film => film.genre.includes(Number(filterTermSelect)))
+        .filter(film => film.name.toLowerCase().includes(filterTermSearch.trim().toLowerCase()))
+    } else {
+      if(filterTermSelect && !filterTermSearch){
+        this.filteredFilms = this.films.filter(film => film.genre.includes(Number(filterTermSelect)));
+      }
+      if(!filterTermSelect && filterTermSearch){
+        this.filteredFilms = this.films.filter(film => film.name.toLowerCase().includes(filterTermSearch.trim().toLowerCase()))
+      }
+      if(!filterTermSelect && !filterTermSearch){
+        this.filteredFilms = this.films
+      }
     }
   }
 
