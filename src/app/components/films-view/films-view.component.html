@@ -1,0 +1,13 @@
+<h2 class="page__title">Популярные фильмы</h2>
+<div class="films__container">
+  <ng-container *ngIf="films" >
+    <app-films-card *ngFor="let film of films" [film]="film" [isFavorite]="defineFavorite(film)"/>
+  </ng-container>
+</div>
+<ng-container *ngIf="favoriteFilm">
+  <h2 class="page__title">Самый лучший фильм</h2>
+  <div class="films__container-favorite">
+  <app-films-card [film]="favoriteFilm" [isFavorite]="defineFavorite(favoriteFilm)"/>
+  </div>
+</ng-container>
+

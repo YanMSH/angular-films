@@ -1,0 +1,44 @@
+.film__card {
+  width: 190px;
+  height: 400px;
+  padding: 15px 20px;
+  display: flex;
+  gap: 10px;
+  flex-direction: column;
+  box-shadow: 0px 0px 15px rgba(29, 24, 56, 0.1);
+  border-radius: 10px;
+  font-family: Montserrat, sans-serif;
+}
+
+.film__image {
+  width: 150px;
+  height: 225px;
+  border-radius: 5px;
+  align-self: center;
+}
+
+.film__title {
+  width: 150px;
+  font-size: 14px;
+  line-height: 16px;
+  font-family: Montserrat, sans-serif;
+  font-weight: 600;
+}
+
+.film__genres,
+.film__year {
+  font-size: 12px;
+  font-weight: 400;
+  margin: 0;
+  line-height: 14px;
+}
+
+.film__favorite {
+  background-color: #ffffff;
+}
+
+/*.button__icon {*/
+/*  !*color: gray;*!*/
+/*  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 48*/
+
+/*}*/

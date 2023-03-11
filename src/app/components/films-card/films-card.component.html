@@ -1,0 +1,9 @@
+<mat-card class="film__card">
+  <img class="film__image" src="{{image}}" alt="Афиша фильма {{title}}">
+  <mat-card-title class="film__title">
+    {{title}}
+  </mat-card-title>
+  <p class="film__genres">{{genres}}</p>
+  <p class="film__year">{{year}}</p>
+  <app-button-favorite [isFavorite]="isFavorite" [clickHandler]="clickHandler"/>
+</mat-card>
