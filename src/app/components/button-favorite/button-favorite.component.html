@@ -1,3 +1,3 @@
-<button mat-icon-button class="button__favorite" (click)="clickHandler()">
+<button mat-icon-button class="button__favorite" (click)="clickHandler(); $event.stopPropagation()" >
   <mat-icon >{{isFavorite ? 'favorite' : 'favorite_border'}}</mat-icon>
 </button>

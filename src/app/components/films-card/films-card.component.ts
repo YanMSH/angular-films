@@ -1,6 +1,8 @@
 import {Component, Input} from '@angular/core';
 import {Film, Genres} from "../../models/Film";
 import {FavoriteFilmService} from "../../services/favorite-film/favorite-film.service";
+import {MatDialog} from "@angular/material/dialog";
+import {PopupFilmComponent} from "../popup-film/popup-film.component";
 
 @Component({
   selector: 'app-films-card',
@@ -11,12 +13,27 @@ export class FilmsCardComponent {
   @Input () film: Film;
   @Input () isFavorite: boolean;
   constructor(
-    public favService: FavoriteFilmService
+    public favService: FavoriteFilmService,
+    public dialog: MatDialog,
   ) {
   }
 
   clickHandler = () => {
     this.favService.setFavorite(this.film)
+  }
+
+  openDialog(){
+    this.dialog.open(PopupFilmComponent, {
+      data: {
+        name: this.title,
+        year: this.year,
+        genres: this.genres,
+        description: this.film.description,
+        imageUrl: this.image,
+        isFavorite: this.isFavorite,
+        toggleFavorite: this.clickHandler,
+      }
+    })
   }
 
   get title(){

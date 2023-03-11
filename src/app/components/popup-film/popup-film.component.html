@@ -1,0 +1,16 @@
+<div class="popup__container">
+  <img src="{{imageUrl}}" alt="Афиша фильма {{title}}" class="popup__image">
+  <div class="popup__inner">
+    <h2 class="popup__title popup__text">{{title}}</h2>
+    <p class="popup__genres popup__text">{{genres}}</p>
+    <p class="popup__year popup__text">{{year}}</p>
+    <p class="popup__description popup__text">{{description}}</p>
+  </div>
+  <div class="popup__buttons">
+    <button mat-button tabindex="-1" color="primary" *ngIf="!isFavorite" (click)="toggleFavoriteHandler()">Выбрать лучшим фильмом</button>
+    <button mat-button tabindex="-1" color="warn" *ngIf="isFavorite" (click)="toggleFavoriteHandler()">Удалить из лучших фильмов</button>
+    <button mat-button mat-dialog-close="true" tabindex="-1" color="accent">Закрыть</button>
+    <!--    Аттрибуту tabindex присвоено значение "-1", чтобы диалоговое окно выглядело как на макете,
+    однако с точки зрения доступности так делать не стоит -->
+  </div>
+</div>

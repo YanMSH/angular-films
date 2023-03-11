@@ -7,13 +7,15 @@ import { FilmsViewComponent } from './components/films-view/films-view.component
 import {HttpClientModule} from "@angular/common/http";
 import { FilmsCardComponent } from './components/films-card/films-card.component';
 import { ButtonFavoriteComponent } from './components/button-favorite/button-favorite.component';
+import { PopupFilmComponent } from './components/popup-film/popup-film.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     FilmsViewComponent,
     FilmsCardComponent,
-    ButtonFavoriteComponent
+    ButtonFavoriteComponent,
+    PopupFilmComponent
   ],
   imports: [
     BrowserModule,

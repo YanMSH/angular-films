@@ -1,0 +1,38 @@
+.popup__container {
+  display: flex;
+  padding: 15px 20px;
+  gap: 20px;
+  width: 756px;
+  font-family: Montserrat, sans-serif;
+}
+
+.popup__image {
+  width: 150px;
+  height: 225px;
+}
+
+.popup__inner {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.popup__text {
+  margin: 0;
+  font-size: 12px;
+  line-height: 14px;
+}
+
+.popup__title {
+  font-family: Montserrat, sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 22px;
+  margin: 0;
+}
+
+.popup__buttons {
+  position: absolute;
+  right: 20px;
+  bottom: 15px;
+}
+
