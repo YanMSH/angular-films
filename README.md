@@ -1,27 +1,85 @@
-# AngularFilms
+# AngularFilms [EN]
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.1.1.
+This project was made as a part of the test task by PTB72. This project built with Angular, RxJs, Angular Material and Sass preprocessor (SCSS syntax).
 
-## Development server
+## Deploy
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Build version of this project was deployed on Netlify. [Link here](https://angular-films-yanmsh.netlify.app/)
 
-## Code scaffolding
+## Run
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+If you want to run this app on your PC you should download this repository, then open it with terminal and run these commands: `npm install` then `ng serve`
 
-## Build
+## Node.js version 
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+This project based on Node.js version 16.18.0
 
-## Running unit tests
+---
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+# AngularFilms [RU]
 
-## Running end-to-end tests
+Проект сделан в рамках тестового задания от Промтехбезопасность. Приложение выполнено с использованием фреймворка Angular, библиотек RxJs, Angular Material и препроцессора Sass (используется синтаксис SCSS).
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+## Деплой
 
-## Further help
+Билд этого приложения задеплоен на [Netlify](https://app.netlify.com/drop). [Ссылка на приложение](https://angular-films-yanmsh.netlify.app/)
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+## Запуск
+
+Если вы хотите запустить это приложение на своем компьютере в окружении разработки, вы должны загрузить данный репозиторий, затем открыть папку с приложением в терминале и ввести команду `npm install` затем команду `ng serve`
+
+## Версия Node.js
+
+В проекте используется Node.js версии 16.18.0
+
+---
+
+# Тестовое задание
+
+В задание включено несколько этапов, чем больше этапов пройдено, тем лучше. Макет и тестовые данные приложены к заданию.
+
+Тестовое приложение представляет сервис для выбора лучшего фильма в истории.
+
+В разработке необходимо использовать angular material (инпуты, кнопки, диалоговые окна), средства самого angular, rxJs, pipes, services.  Роутинг не требуется.
+
+Использование методологии приветствуется. Необходимо использовать препроцессор scss. Новые компоненты, создаваемые angular-cli, должны быть со стилями scss.
+
+Адаптив макета не требуется, но будет плюсом.
+
+## Этап 1
+
+Верстка карточек с фильмами:
+* Верстка по макету, без инпутов и диалогового окна;
+* Данные импортируются из data.json;
+* При клике на кнопку лайка, фильм попадает в «Самый лучший фильм»;
+* Для выбранного фильма иконка закрашена;
+* При клике на кнопку лайка, уже выбранного фильма, фильм пропадает из «Самый лучший фильм»;
+* Можно выбрать только один фильм;
+* При выборе фильма, фильм сохраняется в localStorage;
+* При отмене выбора фильма, фильм удаляется из localStorage;
+* В папке images находятся постеры к фильмам, название файла соответствует id фильма;
+* Папка images должна подтягиваться к сборке, и быть не внутри assets
+* Каждый фильм имеет жанр, который представлен в виде массива чисел. Список жанров указан внизу файла.
+* При загрузке страницы проверяется localStorage на наличие фильма, если фильм есть он должен отобразиться в «Самый лучший фильм»;
+
+## Этап 2
+
+Диалоговое окно с фильмом:
+* Использовать диалоговое окно material;
+* Верстка диалогового окна;
+* При клике на карточку с фильмом, открывается диалоговое окно;
+* Кнопки представлены из material, дополнительная стилизация не требуется;
+* При нажатии на кнопку «Выбрать лучшим», фильм попадает в «Самый лучший фильм»;
+* При нажатии на кнопку «Убрать из лучшего», фильм пропадает из «Самый лучший фильм», localStorage очищается;
+* При нажатии на кнопку «Закрыть», закрывается диалоговое окно;
+* Закрытие диалогового окна, при клике на затемненную область;
+
+## Этап 3
+
+Фильтр:
+* Фильтр по одному из жанров в виде выпадающего списка;
+* При выборе «Все» фильтр сбрасывается;
+* Поиск по названию фильма, в виде отдельного инпута;
+* Если список отфильтрован по жанрам, поиск по названию происходит по уже отфильтрованному списку;
+* Если список отфильтрован по названию, то фильтр по жанрам происходит уже по отфильтрованному списку;
+* Фильтры в виде инпутов material. Для жанров select с одним выбором, для поиска фильтр в виде input type="text"
