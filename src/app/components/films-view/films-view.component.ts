@@ -12,6 +12,7 @@ export class FilmsViewComponent implements OnInit {
   films: Film[];
   filteredFilms: Film[];
   favoriteFilm: Film | null;
+  isLoading: boolean;
   genres = Genres;
   constructor(
     private filmsService: FilmsService,
@@ -20,10 +21,12 @@ export class FilmsViewComponent implements OnInit {
 
   }
   ngOnInit() {
+    this.isLoading = true;
     this.filmsService.getFilms().subscribe(
       (films) => {
         this.films = films;
         this.filteredFilms = this.films;
+        this.isLoading = false;
       }
     )
     this.favService.favoriteFilm$.subscribe(

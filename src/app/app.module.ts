@@ -8,6 +8,7 @@ import { FilmsCardComponent } from './components/films-card/films-card.component
 import { ButtonFavoriteComponent } from './components/button-favorite/button-favorite.component';
 import { PopupFilmComponent } from './components/popup-film/popup-film.component';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import { LoadingMessageComponent } from './components/loading-message/loading-message.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
     FilmsViewComponent,
     FilmsCardComponent,
     ButtonFavoriteComponent,
-    PopupFilmComponent
+    PopupFilmComponent,
+    LoadingMessageComponent
   ],
   imports: [
     BrowserModule,

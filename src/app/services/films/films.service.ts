@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Film} from "../../models/Film";
-import {delay, map} from "rxjs";
+import {catchError, delay, EMPTY, map} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -19,6 +19,7 @@ export class FilmsService {
             film.imageUrl = `images/${film.id}.jpeg`;
             return film;
           } )),
+          catchError(() => EMPTY),
           delay(300)) // добавлена небольшая задержка, чтобы было похоже на подгрузку данных с сервера
   }
 }
