@@ -16,14 +16,14 @@ import { LoadingMessageComponent } from './components/loading-message/loading-me
     FilmsViewComponent,
     FilmsCardComponent,
     ButtonFavoriteComponent,
-    PopupFilmComponent,
-    LoadingMessageComponent
+    PopupFilmComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     MaterialModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    LoadingMessageComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

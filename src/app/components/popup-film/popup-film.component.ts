@@ -5,7 +5,7 @@ import {FilmPopupData} from "../../models/Film";
 @Component({
   selector: 'app-popup-film',
   templateUrl: './popup-film.component.html',
-  styleUrls: ['./popup-film.component.css']
+  styleUrls: ['./popup-film.component.scss']
 })
 export class PopupFilmComponent {
   title: string;

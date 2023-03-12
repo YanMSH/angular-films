@@ -7,7 +7,7 @@ import {PopupFilmComponent} from "../popup-film/popup-film.component";
 @Component({
   selector: 'app-films-card',
   templateUrl: './films-card.component.html',
-  styleUrls: ['./films-card.component.css']
+  styleUrls: ['./films-card.component.scss']
 })
 export class FilmsCardComponent {
   @Input () film: Film;

@@ -1,35 +1,41 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FilmsService} from "../../services/films/films.service";
 import {Film, Genres} from "../../models/Film";
 import {FavoriteFilmService} from "../../services/favorite-film/favorite-film.service";
+import {Subject, takeUntil} from "rxjs";
 
 @Component({
   selector: 'app-films-view',
   templateUrl: './films-view.component.html',
-  styleUrls: ['./films-view.component.css']
+  styleUrls: ['./films-view.component.scss']
 })
-export class FilmsViewComponent implements OnInit {
+export class FilmsViewComponent implements OnInit, OnDestroy {
   films: Film[];
   filteredFilms: Film[];
   favoriteFilm: Film | null;
   isLoading: boolean;
+  destroy$ = new Subject<boolean>();
   genres = Genres;
   constructor(
     private filmsService: FilmsService,
     private favService: FavoriteFilmService
     ) {
-
   }
+
   ngOnInit() {
     this.isLoading = true;
-    this.filmsService.getFilms().subscribe(
+    this.filmsService.getFilms()
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(
       (films) => {
         this.films = films;
         this.filteredFilms = this.films;
         this.isLoading = false;
       }
     )
-    this.favService.favoriteFilm$.subscribe(
+    this.favService.favoriteFilm$
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(
       favorite => {
         if(favorite) {
           this.favoriteFilm = favorite
@@ -38,6 +44,11 @@ export class FilmsViewComponent implements OnInit {
         }
       }
     )
+  }
+
+  ngOnDestroy() {
+    this.destroy$.next(true);
+    this.destroy$.unsubscribe();
   }
 
   defineFavorite(film: Film){
