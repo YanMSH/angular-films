@@ -6,6 +6,6 @@ import {Component, Input} from '@angular/core';
   styleUrls: ['./button-favorite.component.scss']
 })
 export class ButtonFavoriteComponent {
-  @Input () isFavorite: boolean;
-  @Input () clickHandler: () => void;
+  @Input() isFavorite: boolean;
+  @Input() clickHandler: () => void;
 }

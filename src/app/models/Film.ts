@@ -7,7 +7,7 @@ export interface Film {
   imageUrl?: string
 }
 
-export interface FilmPopupData extends Film{
+export interface FilmPopupData extends Film {
   isFavorite: boolean;
   toggleFavorite: () => void;
 }

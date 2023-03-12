@@ -1,4 +1,4 @@
-import { Pipe, PipeTransform } from '@angular/core';
+import {Pipe, PipeTransform} from '@angular/core';
 import {Genres} from "../models/Film";
 
 @Pipe({
@@ -6,6 +6,7 @@ import {Genres} from "../models/Film";
 })
 export class GenrePipe implements PipeTransform {
   genres = Genres;
+
   transform(value: number[]): string {
     return value.map(genreIndex => this.genres[genreIndex]).join(', ')
   }

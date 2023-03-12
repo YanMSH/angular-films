@@ -10,8 +10,9 @@ import {PopupFilmComponent} from "../popup-film/popup-film.component";
   styleUrls: ['./films-card.component.scss']
 })
 export class FilmsCardComponent {
-  @Input () film: Film;
-  @Input () isFavorite: boolean;
+  @Input() film: Film;
+  @Input() isFavorite: boolean;
+
   constructor(
     public favService: FavoriteFilmService,
     public dialog: MatDialog,
@@ -22,7 +23,7 @@ export class FilmsCardComponent {
     this.favService.setFavorite(this.film)
   }
 
-  openDialog(){
+  openDialog() {
     this.dialog.open(PopupFilmComponent, {
       data: {
         id: this.film.id,
@@ -37,11 +38,11 @@ export class FilmsCardComponent {
     })
   }
 
-  get title(){
+  get title() {
     return this.film.name
   }
 
-  get image(){
+  get image() {
     return this.film.imageUrl
   }
 

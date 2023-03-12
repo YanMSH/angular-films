@@ -16,10 +16,11 @@ export class FilmsViewComponent implements OnInit, OnDestroy {
   isLoading: boolean;
   destroy$ = new Subject<boolean>();
   genres = Genres;
+
   constructor(
     private filmsService: FilmsService,
     private favService: FavoriteFilmService
-    ) {
+  ) {
   }
 
   ngOnInit() {
@@ -27,23 +28,23 @@ export class FilmsViewComponent implements OnInit, OnDestroy {
     this.filmsService.getFilms()
       .pipe(takeUntil(this.destroy$))
       .subscribe(
-      (films) => {
-        this.films = films;
-        this.filteredFilms = this.films;
-        this.isLoading = false;
-      }
-    )
+        (films) => {
+          this.films = films;
+          this.filteredFilms = this.films;
+          this.isLoading = false;
+        }
+      )
     this.favService.favoriteFilm$
       .pipe(takeUntil(this.destroy$))
       .subscribe(
-      favorite => {
-        if(favorite) {
-          this.favoriteFilm = favorite
-        } else {
-          this.favoriteFilm = null;
+        favorite => {
+          if (favorite) {
+            this.favoriteFilm = favorite
+          } else {
+            this.favoriteFilm = null;
+          }
         }
-      }
-    )
+      )
   }
 
   ngOnDestroy() {
@@ -51,28 +52,27 @@ export class FilmsViewComponent implements OnInit, OnDestroy {
     this.destroy$.unsubscribe();
   }
 
-  defineFavorite(film: Film){
-    if(this.favoriteFilm){
+  defineFavorite(film: Film) {
+    if (this.favoriteFilm) {
       return film.id === this.favoriteFilm.id
-    }
-    else {
+    } else {
       return false
     }
   }
 
-  applyFilter(filterTermSelect?: string | null, filterTermSearch?: string | null){
-    if(filterTermSelect && filterTermSearch){
+  applyFilter(filterTermSelect?: string | null, filterTermSearch?: string | null) {
+    if (filterTermSelect && filterTermSearch) {
       this.filteredFilms = this.films
         .filter(film => film.genre.includes(Number(filterTermSelect)))
         .filter(film => film.name.toLowerCase().includes(filterTermSearch.trim().toLowerCase()))
     } else {
-      if(filterTermSelect && !filterTermSearch){
+      if (filterTermSelect && !filterTermSearch) {
         this.filteredFilms = this.films.filter(film => film.genre.includes(Number(filterTermSelect)));
       }
-      if(!filterTermSelect && filterTermSearch){
+      if (!filterTermSelect && filterTermSearch) {
         this.filteredFilms = this.films.filter(film => film.name.toLowerCase().includes(filterTermSearch.trim().toLowerCase()))
       }
-      if(!filterTermSelect && !filterTermSearch){
+      if (!filterTermSelect && !filterTermSearch) {
         this.filteredFilms = this.films
       }
     }
