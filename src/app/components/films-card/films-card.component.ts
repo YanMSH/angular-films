@@ -1,5 +1,5 @@
 import {Component, Input} from '@angular/core';
-import {Film, Genres} from "../../models/Film";
+import {Film} from "../../models/Film";
 import {FavoriteFilmService} from "../../services/favorite-film/favorite-film.service";
 import {MatDialog} from "@angular/material/dialog";
 import {PopupFilmComponent} from "../popup-film/popup-film.component";
@@ -25,9 +25,10 @@ export class FilmsCardComponent {
   openDialog(){
     this.dialog.open(PopupFilmComponent, {
       data: {
+        id: this.film.id,
         name: this.title,
         year: this.year,
-        genres: this.genres,
+        genre: this.genres,
         description: this.film.description,
         imageUrl: this.image,
         isFavorite: this.isFavorite,
@@ -49,7 +50,7 @@ export class FilmsCardComponent {
   }
 
   get genres() {
-    return this.film.genre.map(genreId => Genres[genreId]).join(', ')
+    return this.film.genre;
   }
 
 }

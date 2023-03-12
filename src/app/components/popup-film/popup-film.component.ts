@@ -10,7 +10,7 @@ import {FilmPopupData} from "../../models/Film";
 export class PopupFilmComponent {
   title: string;
   year: number;
-  genres: string;
+  genre: number[];
   description: string;
   imageUrl: string;
   isFavorite: boolean;
@@ -20,7 +20,7 @@ export class PopupFilmComponent {
   ) {
     this.title = data.name;
     this.year = data.year;
-    this.genres = data.genres;
+    this.genre = data.genre;
     this.title = data.name;
     this.description = data.description;
     this.imageUrl = data.imageUrl!;
