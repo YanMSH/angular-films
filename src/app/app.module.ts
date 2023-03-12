@@ -9,6 +9,7 @@ import { ButtonFavoriteComponent } from './components/button-favorite/button-fav
 import { PopupFilmComponent } from './components/popup-film/popup-film.component';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import { LoadingMessageComponent } from './components/loading-message/loading-message.component';
+import { GenrePipe } from './pipes/genre.pipe';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { LoadingMessageComponent } from './components/loading-message/loading-me
     FilmsViewComponent,
     FilmsCardComponent,
     ButtonFavoriteComponent,
-    PopupFilmComponent
+    PopupFilmComponent,
+    GenrePipe
   ],
   imports: [
     BrowserModule,

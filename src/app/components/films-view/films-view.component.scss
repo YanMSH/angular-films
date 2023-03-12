@@ -1,12 +1,13 @@
 .films__container {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: var(--gap-desktop);
   margin: 0 25px;
 }
 
 .page__title {
   margin: 36px 25px 15px;
+  font-size: var(--pageheading-font-size-desktop);
 }
 
 .input-group,
@@ -21,7 +22,7 @@
 
 .films__select,
 .films__search {
-  font-size: 14px;
+  font-size: var(--block-title-font-size-desktop);
 }
 
 

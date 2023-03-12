@@ -10,7 +10,7 @@
     <button mat-button tabindex="-1" color="primary" *ngIf="!isFavorite" (click)="toggleFavoriteHandler()">Выбрать лучшим фильмом</button>
     <button mat-button tabindex="-1" color="warn" *ngIf="isFavorite" (click)="toggleFavoriteHandler()">Удалить из лучших фильмов</button>
     <button mat-button mat-dialog-close="true" tabindex="-1" color="accent">Закрыть</button>
-    <!--    Аттрибуту tabindex присвоено значение "-1", чтобы диалоговое окно выглядело как на макете,
+    <!--    Аттрибуту tabindex присвоено значение "-1", чтобы кнопки на диалоговом окне выглядели как на макете,
     однако с точки зрения доступности так делать не стоит -->
   </div>
 </div>

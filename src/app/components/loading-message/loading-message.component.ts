@@ -9,7 +9,7 @@ import { Component } from '@angular/core';
     text-align: center;
     line-height: 75vh;
     font-size: 48px;
-    font-family: Montserrat, sans-serif;
+    font-family: var(--primary-font-family);
     font-weight: 600;
   }`],
   standalone: true,

@@ -1,5 +1,23 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap');
 
+:root {
+  --card-h-desktop: 400px;
+  --card-w-desktop: 190px;
+  --card-border-radius: 10px;
+  --card-shadow: 0 0 15px rgba(29, 24, 56, 0.1);
+  --image-h-desktop: 225px;
+  --image-w-desktop: 150px;
+  --image-border-radius: 5px;
+  --gap-desktop: 10px;
+  --primary-font-family: Montserrat, sans-serif;
+  --typesetting-font-size-desktop: 12px;
+  --typesetting-line-height-desktop: 14px;
+  --block-title-font-size-desktop: 14px;
+  --block-title-line-height-desktop: 16px;
+  --pageheading-font-size-desktop: 20px;
+  --pageheading-line-height-desktop: 22px;
+}
+
 html, body { height: 100%; }
 body {
   margin: 0 auto;

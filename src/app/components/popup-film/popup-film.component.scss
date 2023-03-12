@@ -3,30 +3,31 @@
   padding: 15px 20px;
   gap: 20px;
   width: 756px;
-  font-family: Montserrat, sans-serif;
+  font-family: var(--primary-font-family);
 }
 
 .popup__image {
-  width: 150px;
-  height: 225px;
+  width: var(--image-w-desktop);
+  height: var(--image-h-desktop);
+  border-radius: var(--image-border-radius);
 }
 
 .popup__inner {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: var(--gap-desktop);
 }
 .popup__text {
   margin: 0;
-  font-size: 12px;
-  line-height: 14px;
+  font-size: var(--typesetting-font-size-desktop);
+  line-height: var(--typesetting-line-height-desktop);
 }
 
 .popup__title {
-  font-family: Montserrat, sans-serif;
-  font-size: 20px;
+  font-family: var(--primary-font-family);
+  font-size: var(--pageheading-font-size-desktop);
+  line-height: var(--pageheading-line-height-desktop);
   font-weight: 600;
-  line-height: 22px;
   margin: 0;
 }
 
