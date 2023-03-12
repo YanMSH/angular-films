@@ -1,6 +1,6 @@
 .film__card {
-  width: var(--card-w-desktop);
-  height: var(--card-h-desktop);
+  width: var(--card-w);
+  height: var(--card-h);
   padding: 15px 20px;
   display: flex;
   flex-direction: column;
@@ -11,24 +11,24 @@
 }
 
 .film__image {
-  width: var(--image-w-desktop);
-  height: var(--image-h-desktop);
+  width: var(--image-w);
+  height: var(--image-h);
   border-radius: var(--image-border-radius);
   align-self: center;
 }
 
 .film__title {
-  width: var(--image-w-desktop);
-  font-size: var(--block-title-font-size-desktop);
-  line-height: var(--block-title-line-height-desktop);
+  width: var(--image-w);
+  font-size: var(--block-title-font-size);
+  line-height: var(--block-title-line-height);
   font-family: var(--primary-font-family);
   font-weight: 600;
 }
 
 .film__genres,
 .film__year {
-  font-size: var(--typesetting-font-size-desktop);
+  font-size: var(--typesetting-font-size);
   font-weight: 400;
   margin: 0;
-  line-height: var(--typesetting-line-height-desktop);
+  line-height: var(--typesetting-line-height);
 }
