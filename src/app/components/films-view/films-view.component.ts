@@ -52,6 +52,10 @@ export class FilmsViewComponent implements OnInit, OnDestroy {
     this.destroy$.unsubscribe();
   }
 
+  filmsTrackBy(index: number, film: Film){
+    return film.id;
+  }
+
   defineFavorite(film: Film) {
     if (this.favoriteFilm) {
       return film.id === this.favoriteFilm.id

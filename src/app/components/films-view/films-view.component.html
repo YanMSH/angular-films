@@ -13,17 +13,17 @@
   </mat-form-field>
 
 </div>
-<div class="films__container">
+<section class="films__container">
   <app-loading-message *ngIf="isLoading"/>
   <ng-container *ngIf="films">
-    <app-films-card *ngFor="let film of filteredFilms" [film]="film" [isFavorite]="defineFavorite(film)"/>
+    <app-films-card *ngFor="let film of filteredFilms; trackBy: filmsTrackBy" [film]="film" [isFavorite]="defineFavorite(film)"/>
   </ng-container>
-</div>
+</section>
 
 <ng-container *ngIf="favoriteFilm">
   <h2 class="page__title">Самый лучший фильм</h2>
-  <div class="films__container-favorite">
+  <section class="films__container-favorite">
     <app-films-card [film]="favoriteFilm" [isFavorite]="defineFavorite(favoriteFilm)"/>
-  </div>
+  </section>
 </ng-container>
 
