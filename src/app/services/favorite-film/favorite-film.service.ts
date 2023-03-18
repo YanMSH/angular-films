@@ -7,33 +7,40 @@ import {Film} from "../../models/Film";
 })
 export class FavoriteFilmService {
   favoriteFilm$ = new ReplaySubject<Film | null>(1);
-  currentFavoriteFilm : Film | null;
+  currentFavoriteFilm: Film | null;
+
   constructor() {
-    const favoriteString = localStorage.getItem('favorite');
+    const favorite = this.getFavorite();
     this.favoriteFilm$.subscribe(
       v => this.currentFavoriteFilm = v
     )
-    if (favoriteString) {
-      const favorite = JSON.parse(favoriteString);
-      this.favoriteFilm$.next(favorite);
-    }
-    else {
-      this.favoriteFilm$.next(null);
-    }
+    this.favoriteFilm$.next(favorite);
   }
 
   setFavorite(film: Film) {
-    if(this.currentFavoriteFilm){
-      if(this.currentFavoriteFilm.id === film.id){
-        localStorage.removeItem('favorite');
-        this.favoriteFilm$.next(null);
+    localStorage.setItem('favorite', JSON.stringify(film))
+    this.favoriteFilm$.next(film);
+  }
+
+  getFavorite() {
+    const favoriteString = localStorage.getItem('favorite');
+    return favoriteString ? JSON.parse(favoriteString) : null;
+  }
+
+  removeFavorite() {
+    localStorage.removeItem('favorite');
+    this.favoriteFilm$.next(null);
+  }
+
+  toggleFavorite(film: Film) {
+    if (this.currentFavoriteFilm) {
+      if (this.currentFavoriteFilm.id === film.id) {
+        this.removeFavorite();
       } else {
-        localStorage.setItem('favorite', JSON.stringify(film))
-        this.favoriteFilm$.next(film);
+        this.setFavorite(film);
       }
     } else {
-      localStorage.setItem('favorite', JSON.stringify(film))
-      this.favoriteFilm$.next(film);
+      this.setFavorite(film);
     }
   }
 }
