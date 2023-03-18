@@ -14,7 +14,7 @@ export class FavoriteFilmService {
     this.favoriteFilm$.subscribe(
       v => this.currentFavoriteFilm = v
     )
-    this.favoriteFilm$.next(favorite);
+    this.favoriteFilm$.next(favorite)
   }
 
   setFavorite(film: Film) {
