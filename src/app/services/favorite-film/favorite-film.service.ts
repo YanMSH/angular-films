@@ -7,22 +7,26 @@ import {Film} from "../../models/Film";
 })
 export class FavoriteFilmService {
   favoriteFilm$ = new ReplaySubject<Film | null>(1);
-
+  currentFavoriteFilm : Film | null;
   constructor() {
     const favoriteString = localStorage.getItem('favorite');
+    this.favoriteFilm$.subscribe(
+      v => this.currentFavoriteFilm = v
+    )
     if (favoriteString) {
-      const favorite = JSON.parse(favoriteString)
-      this.favoriteFilm$.next(favorite)
+      const favorite = JSON.parse(favoriteString);
+      this.favoriteFilm$.next(favorite);
+    }
+    else {
+      this.favoriteFilm$.next(null);
     }
   }
 
   setFavorite(film: Film) {
-    const previousFavoriteString = localStorage.getItem('favorite');
-    if(previousFavoriteString){
-      const previousFavorite = JSON.parse(previousFavoriteString);
-      if(previousFavorite.id === film.id){
+    if(this.currentFavoriteFilm){
+      if(this.currentFavoriteFilm.id === film.id){
         localStorage.removeItem('favorite');
-        this.favoriteFilm$.next(null)
+        this.favoriteFilm$.next(null);
       } else {
         localStorage.setItem('favorite', JSON.stringify(film))
         this.favoriteFilm$.next(film);
