@@ -20,7 +20,7 @@ export class FilmsCardComponent {
   }
 
   clickHandler = () => {
-    this.favService.setFavorite(this.film)
+    this.favService.toggleFavorite(this.film)
   }
 
   openDialog() {

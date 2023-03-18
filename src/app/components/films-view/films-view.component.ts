@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit} from '@angular/core';
 import {FilmsService} from "../../services/films/films.service";
 import {Film, Genres} from "../../models/Film";
 import {FavoriteFilmService} from "../../services/favorite-film/favorite-film.service";
@@ -7,7 +7,8 @@ import {Subject, takeUntil} from "rxjs";
 @Component({
   selector: 'app-films-view',
   templateUrl: './films-view.component.html',
-  styleUrls: ['./films-view.component.scss']
+  styleUrls: ['./films-view.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FilmsViewComponent implements OnInit, OnDestroy {
   films: Film[];
@@ -19,7 +20,8 @@ export class FilmsViewComponent implements OnInit, OnDestroy {
 
   constructor(
     private filmsService: FilmsService,
-    private favService: FavoriteFilmService
+    private favService: FavoriteFilmService,
+    private ref: ChangeDetectorRef,
   ) {
   }
 
@@ -32,6 +34,7 @@ export class FilmsViewComponent implements OnInit, OnDestroy {
           this.films = films;
           this.filteredFilms = this.films;
           this.isLoading = false;
+          this.ref.markForCheck();
         }
       )
     this.favService.favoriteFilm$
@@ -43,8 +46,10 @@ export class FilmsViewComponent implements OnInit, OnDestroy {
           } else {
             this.favoriteFilm = null;
           }
+          this.ref.markForCheck()
         }
-      )
+      );
+
   }
 
   ngOnDestroy() {
