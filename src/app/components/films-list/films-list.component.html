@@ -1,0 +1,26 @@
+<ng-container *ngIf="films else loading">
+  <section class="films__container">
+
+    <ng-container *ngIf="filterable else favorite">
+      <app-films-card
+        *ngFor="let film of films | filterByGenre: genre | filterByName: search; trackBy: filmsTrackBy"
+        [film]="film"
+        [isFavorite]="defineFavorite(film)"
+      />
+    </ng-container>
+
+  </section>
+</ng-container>
+
+
+<ng-template #loading>
+  <app-loading-message/>
+</ng-template>
+
+<ng-template #favorite>
+  <app-films-card
+    *ngFor="let film of films; trackBy: filmsTrackBy"
+    [film]="film"
+    [isFavorite]="defineFavorite(film)"
+  />
+</ng-template>

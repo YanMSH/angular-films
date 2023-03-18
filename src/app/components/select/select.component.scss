@@ -1,0 +1,10 @@
+.select{
+  font-size: var(--block-title-font-size);
+}
+
+@media (max-width: 450px) {
+  .select {
+    width: 90%;
+    margin: 0 auto;
+  }
+}

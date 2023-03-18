@@ -1,8 +1,13 @@
-import {ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit} from '@angular/core';
+import {
+  ChangeDetectionStrategy, ChangeDetectorRef,
+  Component,
+  OnDestroy,
+  OnInit
+} from '@angular/core';
 import {FilmsService} from "../../services/films/films.service";
 import {Film, Genres} from "../../models/Film";
 import {FavoriteFilmService} from "../../services/favorite-film/favorite-film.service";
-import {Subject, takeUntil} from "rxjs";
+import {Observable, Subject, takeUntil} from "rxjs";
 
 @Component({
   selector: 'app-films-view',
@@ -11,32 +16,31 @@ import {Subject, takeUntil} from "rxjs";
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FilmsViewComponent implements OnInit, OnDestroy {
-  films: Film[];
-  filteredFilms: Film[];
+
   favoriteFilm: Film | null;
-  isLoading: boolean;
   destroy$ = new Subject<boolean>();
   genres = Genres;
+  selectedGenre: string | null = null;
+  searchTerm: string;
+  films$: Observable<Film[]>
 
   constructor(
     private filmsService: FilmsService,
     private favService: FavoriteFilmService,
-    private ref: ChangeDetectorRef,
+    private cdr: ChangeDetectorRef,
   ) {
   }
 
+  setGenre(value: string | null) {
+    this.selectedGenre = value;
+  }
+
+  setSearch(value: string) {
+    this.searchTerm = value;
+  }
+
   ngOnInit() {
-    this.isLoading = true;
-    this.filmsService.getFilms()
-      .pipe(takeUntil(this.destroy$))
-      .subscribe(
-        (films) => {
-          this.films = films;
-          this.filteredFilms = this.films;
-          this.isLoading = false;
-          this.ref.markForCheck();
-        }
-      )
+    this.films$ = this.filmsService.getFilms();
     this.favService.favoriteFilm$
       .pipe(takeUntil(this.destroy$))
       .subscribe(
@@ -46,45 +50,13 @@ export class FilmsViewComponent implements OnInit, OnDestroy {
           } else {
             this.favoriteFilm = null;
           }
-          this.ref.markForCheck()
+          this.cdr.markForCheck()
         }
       );
-
   }
 
   ngOnDestroy() {
     this.destroy$.next(true);
     this.destroy$.unsubscribe();
   }
-
-  filmsTrackBy(index: number, film: Film){
-    return film.id;
-  }
-
-  defineFavorite(film: Film) {
-    if (this.favoriteFilm) {
-      return film.id === this.favoriteFilm.id
-    } else {
-      return false
-    }
-  }
-
-  applyFilter(filterTermSelect?: string | null, filterTermSearch?: string | null) {
-    if (filterTermSelect && filterTermSearch) {
-      this.filteredFilms = this.films
-        .filter(film => film.genre.includes(Number(filterTermSelect)))
-        .filter(film => film.name.toLowerCase().includes(filterTermSearch.trim().toLowerCase()))
-    } else {
-      if (filterTermSelect && !filterTermSearch) {
-        this.filteredFilms = this.films.filter(film => film.genre.includes(Number(filterTermSelect)));
-      }
-      if (!filterTermSelect && filterTermSearch) {
-        this.filteredFilms = this.films.filter(film => film.name.toLowerCase().includes(filterTermSearch.trim().toLowerCase()))
-      }
-      if (!filterTermSelect && !filterTermSearch) {
-        this.filteredFilms = this.films
-      }
-    }
-  }
-
 }

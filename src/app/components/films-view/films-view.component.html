@@ -1,29 +1,13 @@
 <h2 class="page__title">Популярные фильмы</h2>
 <div class="input-group">
-
-  <mat-form-field appearance="outline" class="films__select">
-    <mat-select #genre placeholder="Все" (selectionChange)="applyFilter(genre.value, search.value)">
-      <mat-option *ngFor="let genre of genres"
-                  [value]="genre ? genres.indexOf(genre) : 0">{{genre ? genre : 'Все'}}</mat-option>
-    </mat-select>
-  </mat-form-field>
-  <mat-form-field appearance="outline" class="films__search">
-    <input matInput #search type="text" placeholder="Введите название"
-           (input)="applyFilter(genre.value, search.value)"/>
-  </mat-form-field>
-
+  <app-select [options]="genres" placeholder="Все" (selectValueEvent)="setGenre($event)"></app-select>
+  <app-input type="text" placeholder="Введите название" (inputValueEvent)="setSearch($event)"></app-input>
 </div>
-<section class="films__container">
-  <app-loading-message *ngIf="isLoading"/>
-  <ng-container *ngIf="films">
-    <app-films-card *ngFor="let film of filteredFilms; trackBy: filmsTrackBy" [film]="film" [isFavorite]="defineFavorite(film)"/>
-  </ng-container>
-</section>
+
+<app-films-list [films]="films$ | async" [genre]="selectedGenre" [search]="searchTerm" [filterable]="true" [favoriteFilm]="favoriteFilm"/>
 
 <ng-container *ngIf="favoriteFilm">
   <h2 class="page__title">Самый лучший фильм</h2>
-  <section class="films__container-favorite">
-    <app-films-card [film]="favoriteFilm" [isFavorite]="defineFavorite(favoriteFilm)"/>
-  </section>
+  <app-films-list [films]="[favoriteFilm]" [filterable]="false" [favoriteFilm]="favoriteFilm"/>
 </ng-container>
 

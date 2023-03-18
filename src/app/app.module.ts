@@ -10,6 +10,11 @@ import {PopupFilmComponent} from './components/popup-film/popup-film.component';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {LoadingMessageComponent} from './components/loading-message/loading-message.component';
 import {GenrePipe} from './pipes/genre.pipe';
+import { FilterByGenrePipe } from './pipes/filter-by-genre.pipe';
+import { FilterByNamePipe } from './pipes/filter-by-name.pipe';
+import { FilmsListComponent } from './components/films-list/films-list.component';
+import { SelectComponent } from './components/select/select.component';
+import { InputComponent } from './components/input/input.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +23,12 @@ import {GenrePipe} from './pipes/genre.pipe';
     FilmsCardComponent,
     ButtonFavoriteComponent,
     PopupFilmComponent,
-    GenrePipe
+    GenrePipe,
+    FilterByGenrePipe,
+    FilterByNamePipe,
+    FilmsListComponent,
+    SelectComponent,
+    InputComponent
   ],
   imports: [
     BrowserModule,

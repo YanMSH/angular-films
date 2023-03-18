@@ -22,4 +22,28 @@ export class FilmsService {
           catchError(() => EMPTY),
           delay(300)) // добавлена небольшая задержка, чтобы было похоже на подгрузку данных с сервера
   }
+
+  getFilteredFilms(selectedGenre?: string, searchTerm?: string){
+      this.getFilms().pipe(
+        map((films) => {
+          const search = (film: Film, searchTerm?: string) => {
+            if(!searchTerm){
+              return true
+            }
+            else {
+              return film.name.toLowerCase().includes(searchTerm.trim().toLowerCase())
+            }
+          }
+          const select = (film: Film, selectedGenre?: string) => {
+            if(!selectedGenre){
+              return true
+            }
+            else {
+              return film.genre.includes((Number(selectedGenre)))
+            }
+          }
+          films.filter(film => search(film, searchTerm) && select(film, selectedGenre))
+        })
+      )
+  }
 }

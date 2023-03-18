@@ -1,0 +1,7 @@
+<mat-form-field appearance="outline" class="input">
+  <input matInput #input
+         type="{{type}}"
+         placeholder="{{placeholder}}"
+         (input)="typeValue(input.value)"
+  />
+</mat-form-field>

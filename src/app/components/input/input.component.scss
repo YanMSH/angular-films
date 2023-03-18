@@ -1,0 +1,10 @@
+.input{
+  font-size: var(--block-title-font-size);
+}
+
+@media (max-width: 450px) {
+  .input {
+    width: 90%;
+    margin: 0 auto;
+  }
+}
